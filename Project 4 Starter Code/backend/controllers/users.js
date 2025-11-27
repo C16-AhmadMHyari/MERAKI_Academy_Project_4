@@ -35,15 +35,24 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const email = req.body.email.toLowerCase();
-  const {password} = req.body
+  const { password } = req.body;
   try {
-    const result = await userModel.findOne({ email }).populate("role");
-    if (result) {
-      res.status(200).json(result);
-    }else{await res.status(404).json("Not Found")}
+    const result = await userModel
+      .findOne({ email: email.toLowerCase() })
+      .populate("role");
+    if (!result) {
+      res.status(404).json("User not found");
+    } else {
+      const correctPassword = await bcrypt.compare(password, result.password);
+      if (!correctPassword) {
+        res.status(404).json("email or password is not correct");
+      } else {
+        res.status(200).json("Welcome to OneHand");
+      }
+    }
   } catch (err) {
     res.status(500).json("Servar Error");
   }
-}; 
+};
 
 module.exports = { register, login };

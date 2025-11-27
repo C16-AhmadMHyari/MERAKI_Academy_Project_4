@@ -13,9 +13,13 @@ const createNewPackage = async (req, res) => {
   });
   try {
     const result = await newPackage.save();
-    res.status(201).json(result);
+    res.status(201).json({
+        success:true,
+        message:"New Package created",
+        result:result
+    });
   } catch (err) {
-    console.log(err);
+    res.status(500).json("Server Error")
   }
 };
 
