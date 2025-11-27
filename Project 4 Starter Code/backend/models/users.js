@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
   country: { type: String, required: true },
   password: { type: String, required: true },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
+});
+
+userSchema.pre("save", async function () {
+  this.email = await this.email.toLowerCase();
 });
 
 module.exports = mongoose.model("User", userSchema);

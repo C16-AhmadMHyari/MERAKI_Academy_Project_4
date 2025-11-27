@@ -24,7 +24,7 @@ const register = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    
+
     res.status(500).json({
       succes: false,
       message: "Server Error",
@@ -33,4 +33,15 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = {register}
+const login = async (req, res) => {
+  const email = req.body.email.toLowerCase();
+  try {
+    const result = await userModel.findOne({ email }).populate("role");
+    if (result) {
+      res.status(200).json(result);
+    }else{await res.status(404).json("Not Found")}
+  } catch (err) {
+    res.status(500).json("Servar Error");
+  }
+};
+module.exports = { register, login };
