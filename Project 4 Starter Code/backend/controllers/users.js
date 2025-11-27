@@ -35,6 +35,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const email = req.body.email.toLowerCase();
+  const {password} = req.body
   try {
     const result = await userModel.findOne({ email }).populate("role");
     if (result) {
@@ -43,5 +44,6 @@ const login = async (req, res) => {
   } catch (err) {
     res.status(500).json("Servar Error");
   }
-};
+}; 
+
 module.exports = { register, login };
