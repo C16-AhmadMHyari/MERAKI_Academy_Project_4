@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-const express = require("express");
 const packageModel = require("../models/packages");
 
 const createNewPackage = async (req, res) => {

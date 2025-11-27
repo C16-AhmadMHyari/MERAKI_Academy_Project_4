@@ -47,10 +47,21 @@ const login = async (req, res) => {
       if (!correctPassword) {
         res.status(404).json("email or password is not correct");
       } else {
+        const payload = {
+          id: result.id,
+          permissions: result.role.permissions,
+        };
+
+        const options = {
+            expiresIn: "15m"
+        }
+
+        const token = jwt.sign(payload,process.env.SECRET,options )
         res.status(200).json("Welcome to OneHand");
       }
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json("Servar Error");
   }
 };
