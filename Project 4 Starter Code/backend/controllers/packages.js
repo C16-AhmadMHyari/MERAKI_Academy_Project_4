@@ -12,13 +12,26 @@ const createNewPackage = async (req, res) => {
   try {
     const result = await newPackage.save();
     res.status(201).json({
-        success:true,
-        message:"New Package created",
-        result:result
+      success: true,
+      message: "New Package created",
+      result: result,
     });
+  } catch (err) {
+    res.status(500).json("Server Error");
+  }
+};
+
+const getAllPackages = async (req, res) => {
+  try {
+    const result = await packageModel.find({});
+    if (result.length > 0) {
+      res.status(200).json({
+        success: true,
+        result: result,
+      });
+    }else{res.status(200).json("There is no packages")}
   } catch (err) {
     res.status(500).json("Server Error")
   }
 };
-
-module.exports = { createNewPackage };
+module.exports = { createNewPackage,getAllPackages };

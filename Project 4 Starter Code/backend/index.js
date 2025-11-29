@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+console.log(process.env.DB_URI);
+
 const db = require("./models/db");
 const rolesRouter = require("./routes/roles")
 const usersRouter = require("./routes/users");

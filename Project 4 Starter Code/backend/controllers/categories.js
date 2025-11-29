@@ -20,4 +20,19 @@ const makeNewCategory = async (req, res) => {
   }
 };
 
-module.exports = {makeNewCategory}
+const getAllCategories = async (req,res)=>{
+    try{
+        const result = await categoryModel.find({})
+        console.log(result);
+        
+        if(result.length >0){
+            res.status(200).json({
+                success:true,
+                result:result
+            })
+        }else{res.status(404).json("There is no category")}
+    }catch(err){
+        res.status(500).json("Server Error")
+    }
+}
+module.exports = {makeNewCategory, getAllCategories}

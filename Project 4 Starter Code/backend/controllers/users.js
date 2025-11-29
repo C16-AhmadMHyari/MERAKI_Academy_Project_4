@@ -56,7 +56,7 @@ const login = async (req, res) => {
             expiresIn: "15m"
         }
 
-        const token = jwt.sign(payload,process.env.SECRET,options )
+        const token = jwt.sign(payload,process.env.SECRET,options )        
         res.status(200).json("Welcome to OneHand");
       }
     }
