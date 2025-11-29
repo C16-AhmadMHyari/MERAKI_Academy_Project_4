@@ -53,7 +53,7 @@ const login = async (req, res) => {
         };
 
         const options = {
-            expiresIn: "15m"
+            expiresIn: "6h"
         }
 
         const token = jwt.sign(payload,process.env.SECRET,options ) 

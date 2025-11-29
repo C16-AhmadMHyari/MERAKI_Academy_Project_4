@@ -1,12 +1,13 @@
 const packageModel = require("../models/packages");
 
 const createNewPackage = async (req, res) => {
-  const { title, description, imgSource, urgent, category } = req.body;
+  const { title, description, imgSource, urgent, Active, category } = req.body;
   const newPackage = new packageModel({
     title,
     description,
     imgSource,
     urgent,
+    Active,
     category,
   });
   try {
@@ -29,25 +30,45 @@ const getAllPackages = async (req, res) => {
         success: true,
         result: result,
       });
-    }else{res.status(200).json("There is no packages")}
+    } else {
+      res.status(200).json("There is no packages");
+    }
   } catch (err) {
-    res.status(500).json("Server Error")
+    res.status(500).json("Server Error");
   }
 };
 
-const deletePackage = async (req,res)=>{
-  const {id} = req.body
-  try{
-    const result = await packageModel.findByIdAndDelete(id)
+const deletePackage = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const result = await packageModel.findByIdAndDelete(id);
     res.status(200).json({
-      success:true,
-      message:"Selected Package Deleted Successfully"
-    })
-  }catch(err){
+      success: true,
+      message: "Selected Package Deleted Successfully",
+    });
+  } catch (err) {
     res.status(500).json({
-      error: err
-    })
+      error: err,
+    });
   }
+};
 
-}
-module.exports = { createNewPackage,getAllPackages,deletePackage };
+const changeActivity = async (req, res) => {
+  const { id } = req.params;
+  const { Active } = req.body;
+  try {
+    const result = await packageModel.findByIdAndUpdate(id, { Active });
+    res.status(200).json({
+      success: true,
+      message: "Package activity changed",
+    });
+  } catch (err) {
+    res.status(500).json("server error");
+  }
+};
+module.exports = {
+  createNewPackage,
+  getAllPackages,
+  deletePackage,
+  changeActivity,
+};
