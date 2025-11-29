@@ -34,4 +34,20 @@ const getAllPackages = async (req, res) => {
     res.status(500).json("Server Error")
   }
 };
-module.exports = { createNewPackage,getAllPackages };
+
+const deletePackage = async (req,res)=>{
+  const {id} = req.body
+  try{
+    const result = await packageModel.findByIdAndDelete(id)
+    res.status(200).json({
+      success:true,
+      message:"Selected Package Deleted Successfully"
+    })
+  }catch(err){
+    res.status(500).json({
+      error: err
+    })
+  }
+
+}
+module.exports = { createNewPackage,getAllPackages,deletePackage };
