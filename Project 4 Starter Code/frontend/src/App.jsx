@@ -6,6 +6,7 @@ import Categories from './components/shared components/Categories';
 import Register from './components/shared components/Register';
 import { Route, Routes,Link } from 'react-router-dom';
 import Home from './components/shared components/Home';
+import About from './components/shared components/About';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/categories' element={<Categories/>}/>
+        <Route path='/about' element={<About/>}/>
       </Routes>
       
     </div>
