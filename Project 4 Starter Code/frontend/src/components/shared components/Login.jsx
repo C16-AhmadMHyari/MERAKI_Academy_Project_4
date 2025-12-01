@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Register from "./Register";
 import axios from "axios"
+import Home from "./Home";
 
 const Login = () => {
   const [email, setEmail] = useState("");

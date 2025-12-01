@@ -53,12 +53,15 @@ const login = async (req, res) => {
         };
 
         const options = {
-            expiresIn: "6h"
-        }
+          expiresIn: "6h",
+        };
 
-        const token = jwt.sign(payload,process.env.SECRET,options ) 
-               
-        res.status(200).json("Welcome to OneHand");
+        const token = jwt.sign(payload, process.env.SECRET, options);
+        const finalResult = { result: result, token: token };
+        res.status(200).json({
+          success: true,
+          finalResult:{result,token}
+        });
       }
     }
   } catch (err) {
