@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import axios from "axios"
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +9,23 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setphoneNumber] = useState("");
   const [password, setPassword] = useState("");
+
+  const confirmRegistration = () => {
+    const newUser = {
+      firstName: firstName,
+      lastName: lastName,
+      country: country,
+      password: password,
+      phoneNumber: phoneNumber,
+      email: email,
+      role: "69280f7349d6a06052244e22",
+    };
+
+    axios
+      .post("http://localhost:5000/users/register", newUser)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -59,7 +77,7 @@ const Register = () => {
         }}
       />
       <br />
-      <button>Register</button>
+      <button onClick={confirmRegistration}>Register</button>
     </div>
   );
 };
