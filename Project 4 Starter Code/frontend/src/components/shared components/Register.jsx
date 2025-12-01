@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
+import Home from "./Home";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");

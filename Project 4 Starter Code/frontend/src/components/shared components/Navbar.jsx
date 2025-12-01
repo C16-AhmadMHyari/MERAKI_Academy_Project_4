@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div style={{  display: "flex", gap:"16px" }}>
         <Link to="/">Home</Link>
-     <Link to="/login">Login</Link> 
+     <Link to="users/login">Login</Link> 
      <Link to='users/register'>Register</Link>
       <Link to="/categories">Fields of Support</Link>
       {/* <Link>Urgent Campaigns</Link> */}

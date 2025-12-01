@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-
+import Register from "./Register";
+import axios from "axios"
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    return (
-        <div>
-            <h1>Login</h1>
-            email <input type="email" placeholder="enter your email"/> <br/>
-            password<input type="password" placeholder="Enter your password here"/><br />
-            <button >Login</button><br/>
-            <p>If you are not user, please rigester here <Link to="/register">Register</Link></p>
-        </div>
-    )
+  const confirmLogin = async () => {
+    try {
+      const result = await axios.post("http://localhost:5000/users/login", {
+        email: email,
+        password: password,
+      });
+      console.log(result.data);
+      
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Login</h1>
+      email{" "}
+      <input
+        type="email"
+        placeholder="enter your email"
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />{" "}
+      <br />
+      password
+      <input
+        type="password"
+        placeholder="Enter your password here"
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+      />
+      <br />
+      <button onClick={confirmLogin}>Login</button>
+      <br />
+      <div>
+        If you are not user, please rigester here{" "}
+        <Link to="/users/register">Register</Link>
+      </div>
+    </div>
+  );
 };
 //onClick={()=>{localStorage.setItem("login" , true)}
 export default Login;
