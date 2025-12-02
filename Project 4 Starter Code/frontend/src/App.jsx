@@ -12,12 +12,11 @@ export const appContext = createContext();
 
 const App = () => {
   const [token, setToken] = useState(null);
-
-  
+  const [role,setRole] = useState(null)
   return (
     <div className="App">
       {" "}
-      <appContext.Provider value={{token,setToken}}>
+      <appContext.Provider value={{ token, setToken,role,setRole }}>
         <h1>OneHand</h1>
         <Navbar />
         <Routes>

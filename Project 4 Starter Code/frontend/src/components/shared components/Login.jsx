@@ -6,8 +6,8 @@ import Home from "./Home";
 import { appContext } from "../../App";
 
 const Login = () => {
-  const {setToken} = useContext(appContext);
-  
+  const { setToken,setRole } = useContext(appContext);
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,8 @@ const Login = () => {
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("role", JSON.stringify(role.role));
       localStorage.setItem("permessions", JSON.stringify(role.permissions));
-      setToken(token)
+      setRole(role.role)
+      setToken(token);
       navigate("/");
     } catch (err) {
       console.log(err);
