@@ -57,10 +57,12 @@ const login = async (req, res) => {
         };
 
         const token = jwt.sign(payload, process.env.SECRET, options);
-        const finalResult = { result: result, token: token };
+        
         res.status(200).json({
           success: true,
-          finalResult:{result,token}
+          firstName:result.firstName,
+          role:result.role,
+          token:token
         });
       }
     }

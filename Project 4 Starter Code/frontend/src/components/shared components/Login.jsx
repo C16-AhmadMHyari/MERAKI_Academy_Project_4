@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link,useNavigate } from "react-router-dom";
 import Register from "./Register";
 import axios from "axios"
 import Home from "./Home";
 
 const Login = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,7 +15,8 @@ const Login = () => {
         email: email,
         password: password,
       });
-      console.log(result.data);
+      localStorage.setItem("token", result.data.token)
+      navigate('/')
       
     } catch (err) {
       console.log(err);
