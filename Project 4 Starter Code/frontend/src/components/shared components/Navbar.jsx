@@ -1,10 +1,13 @@
-import React, { useEffect,useState } from "react";
+import React, { useContext, useEffect,useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
+import { appContext } from "../../App";
+
 
 const Navbar = () => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-
+  const {token,setToken} = useContext(appContext)
+  console.log(token);
+  
   return token ? (
     <div style={{ display: "flex", gap: "16px" }}>
       <Link to="/">Home</Link>

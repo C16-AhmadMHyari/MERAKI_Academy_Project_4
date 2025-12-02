@@ -6,7 +6,7 @@ const authorization = require("../middleware/authorization")
 const packagesRouter = express.Router();
 
 packagesRouter.post("/addpackage",authentication,authorization("CREATE"), controllers.createNewPackage);
-packagesRouter.get("/",authentication,controllers.getAllPackages)
+packagesRouter.get("/",controllers.getAllPackages)
 packagesRouter.delete("/delete",authentication, authorization("DELETE"), controllers.deletePackage)
 packagesRouter.put("/changeActivity/:id", authentication, authorization("UPDATE"), controllers.changeActivity)
 
