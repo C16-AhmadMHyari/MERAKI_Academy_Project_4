@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Routes, Route, Link,useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Register from "./Register";
-import axios from "axios"
+import axios from "axios";
 import Home from "./Home";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,9 +15,12 @@ const Login = () => {
         email: email,
         password: password,
       });
-      localStorage.setItem("token", result.data.token)
-      navigate('/')
-      
+      const { firstName, role, token } = result.data;
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("role", JSON.stringify(role.role));
+      localStorage.setItem("permessions", JSON.stringify(role.permissions));
+      localStorage.setItem("token", token);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }

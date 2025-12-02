@@ -22,9 +22,7 @@ const makeNewCategory = async (req, res) => {
 
 const getAllCategories = async (req,res)=>{
     try{
-        const result = await categoryModel.find({})
-        console.log(result);
-        
+        const result = await categoryModel.find({})        
         if(result.length >0){
             res.status(200).json({
                 success:true,
