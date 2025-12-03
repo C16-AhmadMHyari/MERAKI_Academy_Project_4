@@ -10,7 +10,6 @@ const Home = () => {
         const result = await axios.get("http://localhost:5000/packages/");
         const allCampagins = result.data.result;
         const urgents = allCampagins.filter((elem) => elem.urgent === true);
-        console.log(urgents);
         setUrgentCampagins(urgents);
       } catch (err) {
         console.log(err);

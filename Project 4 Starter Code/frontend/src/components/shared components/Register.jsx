@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Home from "./Home";
+import { appContext } from "../../App";
 
 const Register = () => {
+  const { token, setToken, role, setRole } = useContext(appContext);
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [country, setCountry] = useState("");
@@ -24,7 +27,28 @@ const Register = () => {
 
     axios
       .post("http://localhost:5000/users/register", newUser)
-      .then((res) => console.log(res))
+      .then((res) =>
+        axios
+          .post("http://localhost:5000/users/login", {
+            email: email,
+            password: password,
+          })
+          .then((loginRes) => {
+            localStorage.setItem("token", loginRes.data.token);
+            setToken(loginRes.data.token);
+            localStorage.setItem("role", loginRes.data.role.role);
+            setRole(loginRes.data.role.role);
+            localStorage.setItem("firstName", loginRes.data.firstName);
+            localStorage.setItem(
+              "permissions",
+              JSON.stringify(loginRes.data.role.permissions)
+            );
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      )
       .catch((err) => console.log(err));
   };
 
