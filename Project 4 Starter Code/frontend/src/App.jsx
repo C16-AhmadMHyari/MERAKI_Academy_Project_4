@@ -8,6 +8,7 @@ import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Home from "./components/shared components/Home";
 import About from "./components/shared components/About";
 import AdminPanel from "./components/Admin/AdminPanel";
+import AdminCategories from "./components/Admin/AdminCategories";
 
 export const appContext = createContext();
 
@@ -28,6 +29,7 @@ const App = () => {
           {!token && <Route path="/users/login" element={<Login />} />}
           <Route path="/users/adminpanel" element={<AdminPanel />} />
           <Route path="/categories" element={<Categories />} />
+          {role === "ADMIN" && <Route path="/admin/categories" element={<AdminCategories/>}/>}
           <Route path="/about" element={<About />} />
         </Routes>
       </appContext.Provider>
