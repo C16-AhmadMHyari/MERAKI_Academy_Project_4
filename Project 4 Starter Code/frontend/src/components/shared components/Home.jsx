@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Home = () => {
   const [urgentCampagins, setUrgentCampagins] = useState([]);
@@ -17,9 +18,19 @@ const Home = () => {
     };
     getUregnts();
   }, []);
+
+  const showUrgents = ()=>{
+    return urgentCampagins.map((cam,i)=>{
+      return <div key={cam._id} >
+        <p>{cam.title}</p><br />
+        <img src={cam.imgSource}/><br />
+        <p>{cam.description}</p>
+      </div>
+    })
+  }
   return (
     <div>
-      <div style={{ display: "grid" }}></div>
+      <div style={{ display: "grid" }}>{showUrgents()}</div>
     </div>
   );
 };
