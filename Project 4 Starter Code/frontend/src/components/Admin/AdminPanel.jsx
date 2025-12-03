@@ -2,7 +2,7 @@ import React from "react";
 
 const AdminPanel = ()=>{
 return (
-    <div></div>
+    <div>Admin Panel</div>
 )
 }
 export default AdminPanel

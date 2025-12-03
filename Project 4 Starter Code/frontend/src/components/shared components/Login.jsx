@@ -19,8 +19,9 @@ const Login = () => {
         password: password,
       });
       const { firstName, role, token } = result.data;
+      localStorage.setItem("token", token)
       localStorage.setItem("firstName", firstName);
-      localStorage.setItem("role", JSON.stringify(role.role));
+      localStorage.setItem("role", role.role);
       localStorage.setItem("permessions", JSON.stringify(role.permissions));
       setRole(role.role)
       setToken(token);

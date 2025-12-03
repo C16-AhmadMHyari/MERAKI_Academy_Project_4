@@ -7,22 +7,25 @@ import Register from "./components/shared components/Register";
 import { Route, Routes, Link } from "react-router-dom";
 import Home from "./components/shared components/Home";
 import About from "./components/shared components/About";
+import AdminPanel from "./components/Admin/AdminPanel";
 
 export const appContext = createContext();
 
 const App = () => {
-  const [token, setToken] = useState(null);
-  const [role,setRole] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [role, setRole] = useState(localStorage.getItem("role") || null);
+
   return (
     <div className="App">
       {" "}
-      <appContext.Provider value={{ token, setToken,role,setRole }}>
+      <appContext.Provider value={{ token, setToken, role, setRole }}>
         <h1>OneHand</h1>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users/register" element={<Register />} />
           <Route path="/users/login" element={<Login />} />
+          <Route path="/users/adminpanel" element={<AdminPanel />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/about" element={<About />} />
         </Routes>
