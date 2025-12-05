@@ -56,6 +56,7 @@ const findCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   const { id } = req.params;
+  const {title,description,imgSource} = req.body
   try {
     const result = await categoryModel.findOneAndUpdate(
       { _id: id },
