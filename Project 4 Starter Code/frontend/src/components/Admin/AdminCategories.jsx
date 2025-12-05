@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { createContext, useEffect, useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import AdminCategory from "./AdminCategory";
 
 const AdminCategories = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     axios
@@ -13,12 +15,19 @@ const AdminCategories = () => {
 
   return (
     <div>
-        <div><button>Add New Category</button></div>
+      <div>
+        <button>Add New Category</button>
+      </div>
       <>
         {categories.map((category, i) => {
           return (
             <div className="image-box" key={category._id}>
-              <img src={category.imgSource} />
+              <img
+                src={category.imgSource}
+                onClick={() => {
+                  navigate(`/admin/category/${category._id}`);
+                }}
+              />
               <br />
               {category.title} <br />
               {category.description}

@@ -9,6 +9,7 @@ import Home from "./components/shared components/Home";
 import About from "./components/shared components/About";
 import AdminPanel from "./components/Admin/AdminPanel";
 import AdminCategories from "./components/Admin/AdminCategories";
+import AdminCategory from "./components/Admin/AdminCategory";
 
 export const appContext = createContext();
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/users/adminpanel" element={<AdminPanel />} />
           <Route path="/categories" element={<Categories />} />
           {role === "ADMIN" && <Route path="/admin/categories" element={<AdminCategories/>}/>}
+          <Route path="/admin/category/:id" element={<AdminCategory/>}/>
           <Route path="/about" element={<About />} />
         </Routes>
       </appContext.Provider>

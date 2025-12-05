@@ -7,5 +7,6 @@ const authorization = require("../middleware/authorization")
 
 categoriesRouter.post("/addCategory",authentication,authorization("CREATE"), controllers.makeNewCategory)
 categoriesRouter.get("/", controllers.getAllCategories)
+categoriesRouter.get("/:id",authentication, controllers.findCategory)
 
 module.exports = categoriesRouter

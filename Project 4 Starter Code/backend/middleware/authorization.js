@@ -5,7 +5,7 @@ const authorization = (text) => {
       res.status(401).json("Unauthorized to do that");
     } else {
       next();
-    }
+    }0
   };
 };
 

@@ -33,4 +33,19 @@ const getAllCategories = async (req,res)=>{
         res.status(500).json("Server Error")
     }
 }
-module.exports = {makeNewCategory, getAllCategories}
+
+const findCategory = async (req,res)=>{
+  const {id} = req.params
+
+  try{
+    const result = await categoryModel.findOne({_id:id})
+    if (result){
+    res.status(200).json({
+      success:true,
+      result:result
+    })}else{
+      res.status(404) .json("there is no category with this id")
+    }
+  }catch(err){res.status(500).json("server error")}
+}
+module.exports = {makeNewCategory, getAllCategories, findCategory}
