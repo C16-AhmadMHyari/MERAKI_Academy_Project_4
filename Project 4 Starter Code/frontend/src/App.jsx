@@ -11,6 +11,8 @@ import AdminPanel from "./components/Admin/AdminPanel";
 import AdminCategories from "./components/Admin/AdminCategories";
 import AdminCategory from "./components/Admin/AdminCategory";
 import AdminAddNewCategory from "./components/Admin/AdminAddNewCategory"
+import AdminCategoryUpdate from "./components/Admin/AdminCategoryUpdate"
+
 
 export const appContext = createContext();
 
@@ -33,6 +35,7 @@ const App = () => {
           <Route path="/categories" element={<Categories />} />
           {role === "ADMIN" && <Route path="/admin/categories" element={<AdminCategories/>}/>}
           {role === "ADMIN" && <Route path="/admin/category/:id" element={<AdminCategory/>}/>}
+          {role === "ADMIN" && <Route path="/admin/category/:id/update" element={<AdminCategoryUpdate/>}/>}
           {role === "ADMIN" && <Route path="/admin/addnewcategory" element={<AdminAddNewCategory/>}/>}
           <Route path="/about" element={<About />} />
         </Routes>

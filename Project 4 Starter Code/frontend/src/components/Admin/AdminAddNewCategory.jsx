@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 const addnewcategory = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imgSource, setImgsource] = useState("");
@@ -14,12 +15,16 @@ const addnewcategory = () => {
       imgSource: imgSource,
     };
 
-    axios.post("http://localhost:5000/categories/addCategory",newCategory, {
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((response)=>{console.log(response);
-    }).catch((err)=>{console.log(err);
-    })}
-  
+    axios
+      .post("http://localhost:5000/categories/addCategory", newCategory, {
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((response) => {navigate('/admin/categories')})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <h1>Add New Field</h1>

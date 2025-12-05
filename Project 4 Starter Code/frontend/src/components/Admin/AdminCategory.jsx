@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AdminCategory = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [imgInfo, setImgInfo] = useState({});
   useEffect(() => {
@@ -20,12 +21,21 @@ const AdminCategory = () => {
       });
   }, []);
 
+  const updateCategory = () => {};
+
+  //   const deleteThis = ()=>{
+
+  //   }
+
   return (
     <div>
       <h2>Admin Page</h2>
-      <button>Edit</button>
-      <button>Delete</button><br />
+      <button onClick={() => {navigate(`/admin/category/${id}/update`)}}>Edit</button>
+      <button>Delete</button>
+      <br />
       <h3>{imgInfo.title}</h3>
+      <img src={imgInfo.imgSource} />
+      <p>{imgInfo.description}</p>
     </div>
   );
 };
