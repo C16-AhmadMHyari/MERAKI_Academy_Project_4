@@ -16,7 +16,7 @@ const AdminCategories = () => {
   return (
     <div>
       <div>
-        <button>Add New Category</button>
+        <button onClick={()=>{navigate("/admin/addnewcategory")}}>Add New Category</button>
       </div>
       <>
         {categories.map((category, i) => {
