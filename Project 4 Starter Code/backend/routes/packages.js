@@ -9,6 +9,6 @@ packagesRouter.post("/addpackage",authentication,authorization("CREATE"), contro
 packagesRouter.get("/",controllers.getAllPackages)
 packagesRouter.delete("/delete",authentication, authorization("DELETE"), controllers.deletePackage)
 packagesRouter.put("/changeActivity/:id", authentication, authorization("UPDATE"), controllers.changeActivity)
-
+packagesRouter.get("/:id", controllers.findPackage)
 
 module.exports = packagesRouter;

@@ -7,7 +7,7 @@ const AdminPackages = () => {
   const [packages, setPackages] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/packages/")
+      .get("http://localhost:5000/packages")
       .then((result) => setPackages(result.data.result))
       .catch((err) => console.log(err));
   }, []);
@@ -15,22 +15,21 @@ const AdminPackages = () => {
   return (
     <div>
       <div>
-        {/* onClick={()=>{navigate("/admin/addnewcategory")}} */}
-        <button >Add New Package</button>
+        <button>Add New Package</button>
       </div>
       <>
-        {packages.map((Package, i) => {
+        {packages.map((element, i) => {
           return (
-            <div className="image-box" key={Package._id}>
+            <div className="image-box" key={element._id}>
               <img
-                src={Package.imgSource}
+                src={element.imgSource}
                 onClick={() => {
-                  navigate(`/admin/package/${Package._id}`);
+                  navigate(`/admin/package/${element._id}`);
                 }}
               />
               <br />
-              {Package.title} <br />
-              {Package.description}
+              {element.title} <br />
+              {element.description}
             </div>
           );
         })}
@@ -38,4 +37,4 @@ const AdminPackages = () => {
     </div>
   );
 };
-export default AdminPackages
+export default AdminPackages;

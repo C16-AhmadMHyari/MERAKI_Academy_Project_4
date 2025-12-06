@@ -38,15 +38,22 @@ const getAllPackages = async (req, res) => {
   }
 };
 
-// const updatePackagesByID = async(req,res)=>{
-//   const {id} = req.params
-//   try{
-//     const result = await packageModel.updateMany({category:`${id}`},{ $set: { category: `69341920ba38d2fd6b8c623b` } })
-//     res.status(200).json(result)
-//   }catch(err){console.log(err);
-//   }
-
-// }
+const findPackage = async(req,res)=>{
+  const {id} = req.params
+  try {
+     const result = await packageModel.findOne({ _id: id });
+     if (result) {
+       res.status(200).json({
+         success: true,
+         result: result,
+       });
+     } else {
+       res.status(404).json("there is no category with this id");
+     }
+   } catch (err) {
+     res.status(500).json("server error");
+   }
+}
 
 const deletePackage = async (req, res) => {
   const { id } = req.body;
@@ -81,5 +88,5 @@ module.exports = {
   getAllPackages,
   deletePackage,
   changeActivity,
-  // updatePackagesByID
+  findPackage
 };
