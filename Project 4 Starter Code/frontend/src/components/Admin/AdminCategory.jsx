@@ -22,16 +22,17 @@ const AdminCategory = () => {
   }, []);
 
   const deleteThisCategory = () => {
-    axios
-      .delete(`http://localhost:5000/categories/${id}/delete`, {
-        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((response) => {
-        navigate("/admin/categories");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (confirm)
+      axios
+        .delete(`http://localhost:5000/categories/${id}/delete`, {
+          headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((response) => {
+          navigate("/admin/categories");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   return (

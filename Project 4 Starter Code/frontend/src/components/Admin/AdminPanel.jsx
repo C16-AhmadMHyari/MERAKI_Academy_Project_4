@@ -9,7 +9,7 @@ return (
         <h1>Admin Panel</h1>
         <div style={{display:"flex"}}>
         <button onClick={()=>{navigate("/admin/categories")}}>Edit Categories</button>
-        <button>Edit Packages</button>
+        <button onClick={()=>{navigate("/admin/packages")}}>Edit Packages</button>
         <button>Edit Users</button>
         <button>Reports</button>
         </div>
