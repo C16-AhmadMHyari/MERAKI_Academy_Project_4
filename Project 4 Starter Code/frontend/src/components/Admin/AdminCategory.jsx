@@ -17,16 +17,21 @@ const AdminCategory = () => {
         setImgInfo(response.data.result);
       })
       .catch((err) => {
-        console.log({ full: err, erro1: 1 });
+        console.log({ full: err });
       });
   }, []);
 
   const deleteThisCategory = () => {
-    axios.delete(`http://localhost:5000/categories/${id}/delete`, {
-      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((response)=>{console.log(response);
-    }).catch((err)=>{console.log(err);
-    })
+    axios
+      .delete(`http://localhost:5000/categories/${id}/delete`, {
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((response) => {
+        navigate("/admin/categories");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -39,9 +44,7 @@ const AdminCategory = () => {
       >
         Edit
       </button>
-      <button onClick={()=>{deleteThisCategory()
-        navigate("/admin/categories")
-      }}>Delete</button>
+      <button onClick={deleteThisCategory}>Delete</button>
       <br />
       <h3>{imgInfo.title}</h3>
       <img src={imgInfo.imgSource} />

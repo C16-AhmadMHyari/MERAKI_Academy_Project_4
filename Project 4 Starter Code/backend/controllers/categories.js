@@ -75,9 +75,10 @@ const updateCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
   const { id } = req.params;
   try {
+    const category = await categoryModel.findOne({title:"Others"})
     const result = await packageModel.updateMany(
       { category: `${id}` },
-      { $set: { category: `69341920ba38d2fd6b8c623b` || null } }
+      { $set: { category: category._id } }
     );
     const deleted = await categoryModel.findOneAndDelete({_id:id})
     res.status(200).json(deleted)
