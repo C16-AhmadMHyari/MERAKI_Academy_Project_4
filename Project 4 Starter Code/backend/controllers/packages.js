@@ -48,7 +48,7 @@ const findPackage = async(req,res)=>{
          result: result,
        });
      } else {
-       res.status(404).json("there is no category with this id");
+       res.status(404).json("there is no package with this id");
      }
    } catch (err) {
      res.status(500).json("server error");

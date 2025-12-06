@@ -24,7 +24,7 @@ const AdminPackage = () => {
   return (
     <div>
       <h2>Admin Page</h2>
-      <button onClick={()=>{navigate("/admin/package/:id/update")}}>Edit</button>
+      <button onClick={()=>{navigate(`/admin/package/${id}/update`)}}>Edit</button>
       <button>Delete</button>
       <br />
       <h3>{imgInfo.title}</h3>
