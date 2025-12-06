@@ -9,5 +9,6 @@ categoriesRouter.post("/addCategory",authentication,authorization("CREATE"), con
 categoriesRouter.get("/", controllers.getAllCategories)
 categoriesRouter.get("/:id",authentication, controllers.findCategory)
 categoriesRouter.put("/:id/update",authentication,authorization("UPDATE"), controllers.updateCategory)
+categoriesRouter.delete("/:id/delete",authentication,authorization("DELETE"),controllers.deleteCategory)
 
 module.exports = categoriesRouter

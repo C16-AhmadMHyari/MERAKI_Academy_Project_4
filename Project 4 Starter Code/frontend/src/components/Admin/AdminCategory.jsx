@@ -21,17 +21,27 @@ const AdminCategory = () => {
       });
   }, []);
 
-  const updateCategory = () => {};
-
-  //   const deleteThis = ()=>{
-
-  //   }
+  const deleteThisCategory = () => {
+    axios.delete(`http://localhost:5000/categories/${id}/delete`, {
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+    }).then((response)=>{console.log(response);
+    }).catch((err)=>{console.log(err);
+    })
+  };
 
   return (
     <div>
       <h2>Admin Page</h2>
-      <button onClick={() => {navigate(`/admin/category/${id}/update`)}}>Edit</button>
-      <button>Delete</button>
+      <button
+        onClick={() => {
+          navigate(`/admin/category/${id}/update`);
+        }}
+      >
+        Edit
+      </button>
+      <button onClick={()=>{deleteThisCategory()
+        navigate("/admin/categories")
+      }}>Delete</button>
       <br />
       <h3>{imgInfo.title}</h3>
       <img src={imgInfo.imgSource} />

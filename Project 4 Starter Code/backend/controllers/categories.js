@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const categoryModel = require("../models/categories");
+const packageModel = require("../models/packages")
 
 const makeNewCategory = async (req, res) => {
   const { title, description, imgSource } = req.body;
@@ -56,7 +57,7 @@ const findCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   const { id } = req.params;
-  const {title,description,imgSource} = req.body
+  const { title, description, imgSource } = req.body;
   try {
     const result = await categoryModel.findOneAndUpdate(
       { _id: id },
@@ -70,4 +71,31 @@ const updateCategory = async (req, res) => {
     res.status(500).json("server error");
   }
 };
-module.exports = { makeNewCategory, getAllCategories, findCategory, updateCategory };
+
+const deleteCategory = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await packageModel.updateMany(
+      { category: `${id}` },
+      { $set: { category: `69341920ba38d2fd6b8c623b` || null } }
+    );
+    const deleted = await categoryModel.findOneAndDelete({_id:id})
+    res.status(200).json(deleted)
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// const deleteCategory = async(req,res)=>{
+//   const {id} = req.params
+//   try{
+//     const result = await categoryModel.findOneAndDelete
+//   }
+// }
+module.exports = {
+  makeNewCategory,
+  getAllCategories,
+  findCategory,
+  updateCategory,
+  deleteCategory
+};

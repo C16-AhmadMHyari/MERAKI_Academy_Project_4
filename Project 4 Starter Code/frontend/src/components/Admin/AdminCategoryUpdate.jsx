@@ -37,7 +37,9 @@ const CategoryUpdate = () => {
           },
         }
       )
-      .then((response) => {navigate(`/admin/category/${id}`)})
+      .then((response) => {
+        navigate(`/admin/category/${id}`);
+      })
       .catch((err) => {
         console.log("err:", err);
       });

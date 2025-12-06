@@ -38,6 +38,16 @@ const getAllPackages = async (req, res) => {
   }
 };
 
+// const updatePackagesByID = async(req,res)=>{
+//   const {id} = req.params
+//   try{
+//     const result = await packageModel.updateMany({category:`${id}`},{ $set: { category: `69341920ba38d2fd6b8c623b` } })
+//     res.status(200).json(result)
+//   }catch(err){console.log(err);
+//   }
+
+// }
+
 const deletePackage = async (req, res) => {
   const { id } = req.body;
   try {
@@ -71,4 +81,5 @@ module.exports = {
   getAllPackages,
   deletePackage,
   changeActivity,
+  // updatePackagesByID
 };
