@@ -15,6 +15,7 @@ import AdminCategoryUpdate from "./components/Admin/AdminCategoryUpdate"
 import AdminPackages from "./components/Admin/AdminPackages";
 import AdminPackageUpdate from "./components/Admin/AdminPackageUpdate";
 import AdminPackage from "./components/Admin/AdminPackage";
+import AdminAddNewPackage from "./components/Admin/AdminAddNewPackage"
 
 
 export const appContext = createContext();
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/admin/packages" element={<AdminPackages/>}/>
           <Route path="/admin/package/:id" element={<AdminPackage/>}/>
           <Route path="/admin/package/:id/update" element={<AdminPackageUpdate/>}/>
+          <Route path="/admin/addnewpackage" element={<AdminAddNewPackage/>}/>
           <Route path="/about" element={<About />} />
         </Routes>
       </appContext.Provider>

@@ -15,7 +15,7 @@ const AdminPackages = () => {
   return (
     <div>
       <div>
-        <button>Add New Package</button>
+        <button onClick={()=>{navigate("/admin/addnewpackage")}}>Add New Package</button>
       </div>
       <>
         {packages.map((element, i) => {
