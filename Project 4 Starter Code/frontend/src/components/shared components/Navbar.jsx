@@ -10,7 +10,7 @@ const Navbar = () => {
     <div style={{ display: "flex", gap: "16px" }}>
       <Link to="/">Home</Link>
       {role === "ADMIN" && <Link to="/users/adminpanel">Admin Panel</Link>}
-      {role === "USER" && <Link to="/categories">Fields of Support</Link>}
+      {role === "USER" && <Link to="/user/categories">Fields of Support</Link>}
       {role === "USER" && <Link>Urgent Campagins</Link>}
       <Link to="/about"> About</Link>
       <Link

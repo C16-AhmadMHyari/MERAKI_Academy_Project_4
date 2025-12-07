@@ -24,7 +24,7 @@ const createNewPackage = async (req, res) => {
 
 const getAllPackages = async (req, res) => {
   try {
-    const result = await packageModel.find({});
+    const result = await packageModel.find({}).populate("category")
     if (result.length > 0) {
       res.status(200).json({
         success: true,
@@ -41,7 +41,7 @@ const getAllPackages = async (req, res) => {
 const findPackage = async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await packageModel.findOne({ _id: id });
+    const result = await packageModel.findOne({ _id: id }).populate("category")
     if (result) {
       res.status(200).json({
         success: true,
