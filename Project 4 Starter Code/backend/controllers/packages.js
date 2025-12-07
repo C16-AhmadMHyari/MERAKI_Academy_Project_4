@@ -24,7 +24,7 @@ const createNewPackage = async (req, res) => {
 
 const getAllPackages = async (req, res) => {
   try {
-    const result = await packageModel.find({}).populate("category")
+    const result = await packageModel.find({}).populate("category");
     if (result.length > 0) {
       res.status(200).json({
         success: true,
@@ -40,8 +40,10 @@ const getAllPackages = async (req, res) => {
 
 const findPackage = async (req, res) => {
   const { id } = req.params;
+
   try {
-    const result = await packageModel.findOne({ _id: id }).populate("category")
+    const result = await packageModel.findOne({ _id: id }).populate("category");
+
     if (result) {
       res.status(200).json({
         success: true,
@@ -72,7 +74,7 @@ const deletePackage = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { title,description,imgSource,urgent,category,active } = req.body;
+  const { title, description, imgSource, urgent, category, active } = req.body;
   try {
     const result = await packageModel.findOneAndUpdate(
       { _id: id },
@@ -87,8 +89,8 @@ const update = async (req, res) => {
         },
       },
       { new: true }
-    )
-    res.status(200).json(result)
+    );
+    res.status(200).json(result);
   } catch (err) {
     res.status(500).json("server error");
   }

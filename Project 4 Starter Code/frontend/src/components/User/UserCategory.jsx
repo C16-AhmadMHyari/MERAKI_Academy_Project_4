@@ -46,7 +46,7 @@ const UserCategory = () => {
           return (
             <div key={element._id}>
               {" "}
-              <img src={element.imgSource} onClick={()=>{navigate(`/user/package/${id}`)}} />
+              <img src={element.imgSource} onClick={()=>{navigate(`/user/package/${element._id}`)}} />
               <br />
               <h4>{element.title}</h4>
               <p>{element.description}</p><br />
