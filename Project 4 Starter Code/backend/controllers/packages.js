@@ -38,22 +38,22 @@ const getAllPackages = async (req, res) => {
   }
 };
 
-const findPackage = async(req,res)=>{
-  const {id} = req.params
+const findPackage = async (req, res) => {
+  const { id } = req.params;
   try {
-     const result = await packageModel.findOne({ _id: id });
-     if (result) {
-       res.status(200).json({
-         success: true,
-         result: result,
-       });
-     } else {
-       res.status(404).json("there is no package with this id");
-     }
-   } catch (err) {
-     res.status(500).json("server error");
-   }
-}
+    const result = await packageModel.findOne({ _id: id });
+    if (result) {
+      res.status(200).json({
+        success: true,
+        result: result,
+      });
+    } else {
+      res.status(404).json("there is no package with this id");
+    }
+  } catch (err) {
+    res.status(500).json("server error");
+  }
+};
 
 const deletePackage = async (req, res) => {
   const { id } = req.body;
@@ -70,15 +70,25 @@ const deletePackage = async (req, res) => {
   }
 };
 
-const changeActivity = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const { Active } = req.body;
   try {
-    const result = await packageModel.findByIdAndUpdate(id, { Active });
-    res.status(200).json({
-      success: true,
-      message: "Package activity changed",
-    });
+    const result = await packageModel.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          title: title,
+          description: description,
+          imgSource: imgSource,
+          urgent: urgent,
+          Active: active,
+          category: categoryId,
+        },
+      },
+      { new: true }
+    )
+    res.status(200).json(result)
   } catch (err) {
     res.status(500).json("server error");
   }
@@ -87,6 +97,6 @@ module.exports = {
   createNewPackage,
   getAllPackages,
   deletePackage,
-  changeActivity,
-  findPackage
+  update,
+  findPackage,
 };

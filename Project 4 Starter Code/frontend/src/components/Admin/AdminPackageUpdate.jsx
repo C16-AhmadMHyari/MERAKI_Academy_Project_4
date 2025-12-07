@@ -38,6 +38,10 @@ const AdminPackageUpdate = () => {
         console.log(err);
       });
   }, []);
+
+  // const confirmUpdating = ()=>{
+    
+  // }
   return (
     <div>
       <h1>Updating Package Info</h1>
