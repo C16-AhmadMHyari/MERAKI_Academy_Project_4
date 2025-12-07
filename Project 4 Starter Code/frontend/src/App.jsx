@@ -28,7 +28,7 @@ const App = () => {
   useEffect(() => {
   const savedToken = localStorage.getItem("token");
   if (savedToken) {
-    settoken(savedToken);
+    setToken(savedToken);
     setRole(localStorage.getItem("role"));
   }
 }, []);

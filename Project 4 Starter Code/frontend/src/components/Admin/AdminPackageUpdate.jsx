@@ -32,7 +32,7 @@ const AdminPackageUpdate = () => {
         setImgSource(result.data.result.imgSource);
         setUrgent(result.data.result.urgent);
         setActivity(result.data.result.Active);
-        setCategoryId(result.data.result._id);
+        setCategoryId(result.data.result.category);
       })
       .catch((err) => {
         console.log(err);
@@ -71,44 +71,35 @@ const AdminPackageUpdate = () => {
       />
       <br />
       Is It Urgent ?{" "}
-      <select>
-        <option value={urgent}></option>
-        <option
-          value={urgent}
-          onChange={(e) => {
-            setUrgent(true);
-          }}
-        >
-          Yes
-        </option>
-        <option
-          value={urgent}
-          onChange={(e) => {
-            setUrgent(false);
-          }}
-        >
-          No
-        </option>
+      <select
+        value={urgent ? "true" : "false"}
+        onChange={(e) => setUrgent(e.target.value === "true")}
+      >
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
-      <br />
       Field Type{" "}
-      <select onChange={(e) => setCategoryId(e.target.value)}>
+      <select
+        value={categoryId}
+        onChange={(e) => setCategoryId(e.target.value)}
+      >
         <option value="">Choose here</option>
         {categories.map((cat, i) => (
           <option key={cat._id} value={cat._id}>
             {cat.title}
           </option>
         ))}
-      </select><br/>
+      </select>
+      <br />
       Activity Status
       <select
+        value={active ? "true" : "false"}
         onChange={(e) => {
-          setActivity(e.target.value);
+          setActivity(e.target.value === "true");
         }}
       >
-        <option value={""}></option>
-        <option value={true}>Yes</option>
-        <option value={false}>No</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
       <br />
       <button>Update</button>

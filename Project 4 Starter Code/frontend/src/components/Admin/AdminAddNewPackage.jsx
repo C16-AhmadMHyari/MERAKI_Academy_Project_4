@@ -71,12 +71,12 @@ const addnewpackage = () => {
       Is it Urgent{" "}
       <select
         onChange={(e) => {
-          setUrgent(e.target.value);
+          setUrgent(e.target.value === "true");
         }}
       >
-        <option value={null}></option>
-        <option value={true}>Yes</option>
-        <option value={false}>No</option>
+        <option value=""></option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
       <br />
       {/* //================ */}
@@ -94,12 +94,12 @@ const addnewpackage = () => {
       Do you want it to be Active Directly ?
       <select
         onChange={(e) => {
-          setActivity(e.target.value);
+          setActivity(e.target.value === "true");
         }}
       >
-        <option value={""}></option>
-        <option value={true}>Yes</option>
-        <option value={false}>No</option>
+        <option value=""></option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
       <br />
       <button onClick={confirmAdding}>Add</button>
