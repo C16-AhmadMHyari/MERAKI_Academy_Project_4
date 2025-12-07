@@ -25,6 +25,14 @@ const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [role, setRole] = useState(localStorage.getItem("role") || null);
 
+  useEffect(() => {
+  const savedToken = localStorage.getItem("token");
+  if (savedToken) {
+    settoken(savedToken);
+    setRole(localStorage.getItem("role"));
+  }
+}, []);
+
   return (
     <div className="App">
       {" "}
