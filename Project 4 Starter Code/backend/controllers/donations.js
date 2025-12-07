@@ -17,5 +17,11 @@ const addDonation = async (req, res) => {
   }
 };
 
+const getAllDonations = async(req,res)=>{
+  try{
+    const result = await donationModel.find({})
+    res.status(200).json(result)
+  }catch(err){res.status(500).json(err)}
+}
 
-module.exports = {addDonation}
+module.exports = {addDonation,getAllDonations}

@@ -57,12 +57,12 @@ const login = async (req, res) => {
         };
 
         const token = jwt.sign(payload, process.env.SECRET, options);
-        
+
         res.status(200).json({
           success: true,
-          firstName:result.firstName,
-          role:result.role,
-          token:token
+          firstName: result.firstName,
+          role: result.role,
+          token: token,
         });
       }
     }
@@ -72,4 +72,12 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const getAllUsers = async (req, res) => {
+  try {
+    const result = await userModel.find({});    
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+module.exports = { register, login, getAllUsers };

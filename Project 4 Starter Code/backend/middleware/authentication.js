@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 
 const authentication = async (req, res, next) => {
+  
+  
   if (!req.headers.authorization) {
     res.status(403).json({
       success: false,
