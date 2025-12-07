@@ -74,7 +74,7 @@ const login = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const result = await userModel.find({});    
+    const result = await userModel.find({}).populate("role")   
     res.status(200).json(result);
   } catch (err) {
     console.log(err);
