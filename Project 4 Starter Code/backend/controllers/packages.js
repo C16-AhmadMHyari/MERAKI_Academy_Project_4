@@ -72,7 +72,7 @@ const deletePackage = async (req, res) => {
 
 const update = async (req, res) => {
   const { id } = req.params;
-  const { Active } = req.body;
+  const { title,description,imgSource,urgent,category,active } = req.body;
   try {
     const result = await packageModel.findOneAndUpdate(
       { _id: id },
@@ -83,7 +83,7 @@ const update = async (req, res) => {
           imgSource: imgSource,
           urgent: urgent,
           Active: active,
-          category: categoryId,
+          category: category,
         },
       },
       { new: true }

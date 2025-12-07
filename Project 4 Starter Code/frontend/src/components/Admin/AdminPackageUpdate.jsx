@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const AdminPackageUpdate = () => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -39,9 +40,27 @@ const AdminPackageUpdate = () => {
       });
   }, []);
 
-  // const confirmUpdating = ()=>{
-    
-  // }
+  const confirmUpdating = () => {
+    axios.put(`http://localhost:5000/packages/update/${id}`, {
+      title: title,
+      description: description,
+      imgSource: imgSource,
+      urgent: urgent,
+      Active: active,
+      category: categoryId,
+    },{
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        navigate(`/admin/package/${id}`);
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      })
+  };
   return (
     <div>
       <h1>Updating Package Info</h1>
@@ -82,6 +101,7 @@ const AdminPackageUpdate = () => {
         <option value="true">Yes</option>
         <option value="false">No</option>
       </select>
+      <br />
       Field Type{" "}
       <select
         value={categoryId}
@@ -106,7 +126,7 @@ const AdminPackageUpdate = () => {
         <option value="false">No</option>
       </select>
       <br />
-      <button>Update</button>
+      <button onClick={confirmUpdating}>Update</button>
     </div>
   );
 };
