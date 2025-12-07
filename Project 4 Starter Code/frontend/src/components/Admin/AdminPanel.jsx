@@ -10,7 +10,7 @@ return (
         <div style={{display:"flex"}}>
         <button onClick={()=>{navigate("/admin/categories")}}>Edit Categories</button>
         <button onClick={()=>{navigate("/admin/packages")}}>Edit Packages</button>
-        <button>Edit Users</button>
+        <button onClick={()=>{navigate("/admin/allusers")}}>Edit Users</button>
         <button>Reports</button>
         </div>
     </div>
