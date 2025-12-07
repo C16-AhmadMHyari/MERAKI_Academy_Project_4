@@ -6,7 +6,7 @@ const UserCategory = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [imgInfo, setImgInfo] = useState({});
-  const [packages,setPackage] = useState([])
+  const [packages, setPackages] = useState([]);
 
   useEffect(() => {
     axios
@@ -23,18 +23,38 @@ const UserCategory = () => {
       });
   }, []);
 
-  useEffect(()=>{
-    axios.get(`http://localhost:5000/packages`).then((response)=>{console.log(response);
-    })
-  },[])
-  
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/packages`)
+      .then((response) => {
+        const wantedPackages = response.data.result.filter((element) => {
+          return element.category._id == id;
+        });
+        setPackages(wantedPackages);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
       <h2>{imgInfo.title}</h2>
       <p>{imgInfo.description}</p>
+      <div>
+        {packages.map((element) => {
+          return (
+            <div key={element._id}>
+              {" "}
+              <img src={element.imgSource} onClick={()=>{navigate(`/user/package/${id}`)}} />
+              <br />
+              <h4>{element.title}</h4>
+              <p>{element.description}</p><br />
+            </div>
+          );
+        })}
+      </div>
       {/* <img src={imgInfo.imgSource} /> */}
-      
     </div>
   );
 };

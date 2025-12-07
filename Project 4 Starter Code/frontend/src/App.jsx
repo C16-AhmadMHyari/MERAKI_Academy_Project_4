@@ -20,6 +20,8 @@ import AdminShowUsers from "./components/Admin/AdminShowUsers"
 import AdminOneUserShow from "./components/Admin/AdminOneUserShow"
 import UserCategories from "./components/User/UserCategories"
 import UserCategory from "./components/User/UserCategory";
+import UserPackage from "./components/User/UserPackage";
+
 
 
 export const appContext = createContext();
@@ -61,6 +63,7 @@ const App = () => {
           <Route path="/admin/user/:id" element={<AdminOneUserShow/>}/>
           <Route path="/user/categories" element={<UserCategories/>}/>
           <Route path="/user/category/:id" element = {<UserCategory/>}/>
+          <Route path="/user/package/:id" element={<UserPackage/>}/>
           <Route path="/about" element={<About />} />
         </Routes>
       </appContext.Provider>
