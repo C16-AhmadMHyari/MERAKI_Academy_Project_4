@@ -58,7 +58,7 @@ const findPackage = async (req, res) => {
 };
 
 const deletePackage = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params
   try {
     const result = await packageModel.findByIdAndDelete(id);
     res.status(200).json({

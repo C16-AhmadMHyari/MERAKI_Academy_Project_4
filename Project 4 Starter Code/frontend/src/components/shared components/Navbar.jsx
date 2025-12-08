@@ -13,7 +13,7 @@ const Navbar = () => {
       {role === "USER" && <Link to="/user/categories">Fields of Support</Link>}
       {role === "USER" && <Link to="/user/urgents">Urgent Campagins</Link>}
       <Link to="/about"> About</Link>
-      <Link to="/user/chart">Chart</Link>
+      {role === "USER" && <Link to="/user/chart">Chart</Link>}
       <Link
       style={{marginLeft:"auto"}}
         to="/"

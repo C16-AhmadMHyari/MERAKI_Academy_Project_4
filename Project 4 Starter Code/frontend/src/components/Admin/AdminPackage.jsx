@@ -21,11 +21,23 @@ const AdminPackage = () => {
       });
   }, []);
 
+  const deletePackage = ()=>{
+    axios.delete(`http://localhost:5000/packages/delete/${id}`,{
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+    .then((response)=>{console.log(response);
+      navigate("/admin/packages")
+    }).catch((err)=>{console.log(err);
+    })
+  }
+
   return (
     <div>
       <h2>Admin Page</h2>
       <button onClick={()=>{navigate(`/admin/package/${id}/update`)}}>Edit</button>
-      <button>Delete</button>
+      <button onClick={deletePackage}>Delete</button>
       <br />
       <h3>{imgInfo.title}</h3>
       <img src={imgInfo.imgSource} />
