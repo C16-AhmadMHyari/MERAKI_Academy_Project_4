@@ -60,6 +60,7 @@ const login = async (req, res) => {
 
         res.status(200).json({
           success: true,
+          userId : result.id,
           firstName: result.firstName,
           role: result.role,
           token: token,

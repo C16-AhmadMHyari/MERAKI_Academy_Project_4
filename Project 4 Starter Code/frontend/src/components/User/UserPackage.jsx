@@ -6,6 +6,10 @@ const UserPackage = () => {
   const { id } = useParams();
   const [thisPackage, setThisPackage] = useState([]);
   const [amount, setAmount] = useState(0);
+  const [donations, setDonations] = useState(() => {
+    const saved = localStorage.getItem("donations");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
     axios
@@ -19,6 +23,18 @@ const UserPackage = () => {
         console.log(err);
       });
   }, []);
+
+  const saveToChart = () => {
+    const newDonate = {
+      userId: localStorage.getItem("userId"),
+      amount: amount,
+      package: thisPackage._id,
+      category: thisPackage.category._id,
+    };
+    const updatedDonations = [...donations, newDonate];
+    setDonations(updatedDonations);
+    localStorage.setItem("donations", JSON.stringify(updatedDonations));
+  };
   return (
     <div>
       <h3>{thisPackage.title}</h3>
@@ -26,19 +42,11 @@ const UserPackage = () => {
       <p>{thisPackage.description}</p>
       <br />
       <input
+        type="number"
         value={amount}
-        onChange={(e) => {
-          setAmount(e.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
-          setAmount(amount + 1);
-        }}
-      >
-        +
-      </button><br />
-      {amount >= 1 && <button>Add to cart</button>}
+        onChange={(e) => setAmount(Number(e.target.value))}
+      /><br/>
+      {amount >= 1 && <button onClick={saveToChart}>Add to cart</button>}
     </div>
   );
 };

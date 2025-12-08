@@ -6,11 +6,12 @@ import Home from "./Home";
 import { appContext } from "../../App";
 
 const Login = () => {
-  const { setToken,setRole } = useContext(appContext);
+  const { setToken, setRole } = useContext(appContext);
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
 
   const confirmLogin = async () => {
     try {
@@ -18,12 +19,14 @@ const Login = () => {
         email: email,
         password: password,
       });
-      const { firstName, role, token } = result.data;
-      localStorage.setItem("token", token)
+
+      const { firstName, role, token, userId } = result.data;
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("token", token);
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("role", role.role);
       localStorage.setItem("permessions", JSON.stringify(role.permissions));
-      setRole(role.role)
+      setRole(role.role);
       setToken(token);
       navigate("/");
     } catch (err) {
