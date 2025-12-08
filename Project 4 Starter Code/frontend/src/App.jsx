@@ -21,6 +21,8 @@ import AdminOneUserShow from "./components/Admin/AdminOneUserShow"
 import UserCategories from "./components/User/UserCategories"
 import UserCategory from "./components/User/UserCategory";
 import UserPackage from "./components/User/UserPackage";
+import UserChart from "./components/User/UserChart";
+import UserUrgentCampagins from "./components/User/UserUrgentCampagins"
 
 
 
@@ -64,6 +66,8 @@ const App = () => {
           <Route path="/user/categories" element={<UserCategories/>}/>
           <Route path="/user/category/:id" element = {<UserCategory/>}/>
           <Route path="/user/package/:id" element={<UserPackage/>}/>
+          <Route path="/user/chart" element={<UserChart/>}/>
+          <Route path="/user/urgents" element ={<UserUrgentCampagins/>}/>
           <Route path="/about" element={<About />} />
         </Routes>
       </appContext.Provider>

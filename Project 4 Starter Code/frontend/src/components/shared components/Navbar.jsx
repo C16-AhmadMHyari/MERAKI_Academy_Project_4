@@ -11,9 +11,11 @@ const Navbar = () => {
       <Link to="/">Home</Link>
       {role === "ADMIN" && <Link to="/users/adminpanel">Admin Panel</Link>}
       {role === "USER" && <Link to="/user/categories">Fields of Support</Link>}
-      {role === "USER" && <Link>Urgent Campagins</Link>}
+      {role === "USER" && <Link to="/user/urgents">Urgent Campagins</Link>}
       <Link to="/about"> About</Link>
+      <Link to="/user/chart">Chart</Link>
       <Link
+      style={{marginLeft:"auto"}}
         to="/"
         onClick={() => {
           localStorage.clear();

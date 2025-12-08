@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 
 const UserPackage = () => {
   const { id } = useParams();
-  const [thisPackage, setThisPackage] = useState([]);
+  const [thisPackage, setThisPackage] = useState({});
   const [amount, setAmount] = useState(0);
-  const [donations, setDonations] = useState(() => {
-    const saved = localStorage.getItem("donations");
+  const [chart, setChart] = useState(() => {
+    const saved = localStorage.getItem("Chart");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -17,6 +17,8 @@ const UserPackage = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
+        // console.log(response.data.result);
+        
         setThisPackage(response.data.result);
       })
       .catch((err) => {
@@ -26,14 +28,17 @@ const UserPackage = () => {
 
   const saveToChart = () => {
     const newDonate = {
+      packageName:thisPackage.title,
+      categoryName:thisPackage.category.title,
       userId: localStorage.getItem("userId"),
       amount: amount,
       package: thisPackage._id,
       category: thisPackage.category._id,
+      imgSource:thisPackage.imgSource
     };
-    const updatedDonations = [...donations, newDonate];
-    setDonations(updatedDonations);
-    localStorage.setItem("donations", JSON.stringify(updatedDonations));
+    const updatedChart = [...chart, newDonate];
+    setChart(updatedChart);
+    localStorage.setItem("Chart", JSON.stringify(updatedChart));
   };
   return (
     <div>
@@ -43,7 +48,7 @@ const UserPackage = () => {
       <br />
       <input
         type="number"
-        value={amount}
+        placeholder="Enter Value here"
         onChange={(e) => setAmount(Number(e.target.value))}
       /><br/>
       {amount >= 1 && <button onClick={saveToChart}>Add to cart</button>}
