@@ -11,6 +11,7 @@ const UserChart = () => {
   return (
     <div>
       {chart.map((donation,i) => {
+        
         return (
           <div key={i} >
             <img src={donation.imgSource} />

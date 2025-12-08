@@ -8,11 +8,11 @@ const AdminPackages = () => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/packages")
-      .then((result) => setPackages(result.data.result))
+      .then((result) => setPackages(result.data.result || []))
       .catch((err) => console.log(err));
   }, []);
 
-  return (
+  return (packages.length > 0)? (
     <div>
       <div>
         <button onClick={()=>{navigate("/admin/addnewpackage")}}>Add New Package</button>
@@ -35,6 +35,12 @@ const AdminPackages = () => {
         })}
       </>
     </div>
-  );
+  )
+  : (
+    <div>
+      <button onClick={()=>{navigate("/admin/addnewpackage")}}>Add New Package</button><br />
+      <h1>There is No packages</h1>
+    </div>
+  )
 };
 export default AdminPackages;

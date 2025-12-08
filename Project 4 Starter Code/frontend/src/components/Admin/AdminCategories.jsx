@@ -13,7 +13,7 @@ const AdminCategories = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  return (
+  return (categories.length > 0)? (
     <div>
       <div>
         <button onClick={()=>{navigate("/admin/addnewcategory")}}>Add New Category</button>
@@ -36,6 +36,12 @@ const AdminCategories = () => {
         })}
       </>
     </div>
-  );
+  ):
+  (
+    <div>
+      <button onClick={()=>{navigate("/admin/addnewcategory")}}>Add New Category</button><br />
+      <h1>There is no categories</h1>
+    </div>
+  )
 };
 export default AdminCategories;
