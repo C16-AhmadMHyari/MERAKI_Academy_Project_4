@@ -16,13 +16,31 @@ const addDonation = async (req, res) => {
     res.status(500).json(err);
   }
 };
+const getAllDonations = async (req, res) => {
+  try {
+    const { category, package } = req.query;
 
-const getAllDonations = async(req,res)=>{
-  try{
-    const result = await donationModel.find({}).populate("user").populate("category").populate("package")
-    res.status(200).json(result)
-  }catch(err){console.log(err);
+    let filter = {};
+
+    if (category) {
+      filter.category = category;
+    }
+
+    if (package) {
+      filter.package = package;
+    }
+
+    const donations = await donationModel
+      .find(filter)
+      .populate("user", "firstName lastName email")
+      .populate("category", "name")
+      .populate("package", "title")
+      .sort({ date: -1 });
+
+    res.status(200).json(donations);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-}
+};
 
-module.exports = {addDonation,getAllDonations}
+module.exports = { addDonation, getAllDonations };

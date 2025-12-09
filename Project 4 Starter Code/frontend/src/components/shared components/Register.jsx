@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Home from "./Home";
 import { appContext } from "../../App";
 
 const Register = () => {
-  const { token, setToken, role, setRole } = useContext(appContext);
+  const { setToken, setRole } = useContext(appContext);
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -45,64 +44,85 @@ const Register = () => {
             );
             navigate("/");
           })
-          .catch((err) => {
-            console.log(err);
-          })
+          .catch((err) => console.log(err))
       )
       .catch((err) => console.log(err));
   };
 
   return (
-    <div>
-      <h2>Please put your data to complete registeration</h2>
-      <input
-        placeholder="First Name"
-        onChange={(e) => {
-          setFirstName(e.target.value);
-        }}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Last Name"
-        onChange={(e) => {
-          setLastName(e.target.value);
-        }}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Phone Number"
-        onChange={(e) => {
-          setphoneNumber(e.target.value);
-        }}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Country where you live now"
-        onChange={(e) => {
-          setCountry(e.target.value);
-        }}
-      />
-      <br />
-      <input
-        type="email"
-        placeholder="Your Email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <br />
-      <input
-        type="password"
-        placeholder="Enter Password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <br />
-      <button onClick={confirmRegistration}>Register</button>
+    <div className="container">
+      <div className="card" style={{ maxWidth: "400px", margin: "50px auto" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "10px" }}>
+          Create Account
+        </h2>
+        <p style={{ textAlign: "center", color: "#666", marginBottom: "30px" }}>
+          Join us today
+        </p>
+
+        <div style={{ marginBottom: "15px" }}>
+          <input
+            placeholder="First Name"
+            onChange={(e) => setFirstName(e.target.value)}
+            style={{ width: "100%", maxWidth: "100%" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "15px" }}>
+          <input
+            placeholder="Last Name"
+            onChange={(e) => setLastName(e.target.value)}
+            style={{ width: "100%", maxWidth: "100%" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "15px" }}>
+          <input
+            placeholder="Phone Number"
+            onChange={(e) => setphoneNumber(e.target.value)}
+            style={{ width: "100%", maxWidth: "100%" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "15px" }}>
+          <input
+            placeholder="Country"
+            onChange={(e) => setCountry(e.target.value)}
+            style={{ width: "100%", maxWidth: "100%" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "15px" }}>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ width: "100%", maxWidth: "100%" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "20px" }}>
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ width: "100%", maxWidth: "100%" }}
+          />
+        </div>
+
+        <button onClick={confirmRegistration} style={{ width: "100%" }}>
+          Register
+        </button>
+
+        <p style={{ marginTop: "20px", textAlign: "center", color: "#666" }}>
+          Already have an account?{" "}
+          <Link
+            to="/users/login"
+            style={{ color: "#4a90e2", textDecoration: "none" }}
+          >
+            Login here
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import axios from "axios";
 const UserCategories = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/categories")
@@ -13,28 +14,74 @@ const UserCategories = () => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <h2>The main areas we focus on supporting</h2> 
+    <div className="container">
+      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <h1 style={{ marginBottom: "15px" }}>Fields of Support</h1>
+        <p style={{ color: "#666", fontSize: "18px" }}>
+          The main areas we focus on supporting
+        </p>
       </div>
-      <>
-        {categories.map((category) => {
-          return (
-            <div className="image-box" key={category._id}>
+
+      {categories.length > 0 ? (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {categories.map((category) => (
+            <div
+              key={category._id}
+              className="card"
+              onClick={() => navigate(`/user/category/${category._id}`)}
+              style={{
+                cursor: "pointer",
+                transition: "transform 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-5px)";
+                e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+              }}
+            >
               <img
                 src={category.imgSource}
-                onClick={() => {
-                  navigate(`/user/category/${category._id}`);
+                alt={category.title}
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "contain",
+                  borderRadius: "5px",
+                  marginBottom: "15px",
+                  backgroundColor: "#f5f5f5",
                 }}
               />
-              <br />
-              {category.title} <br />
-              {category.description}
+              <h3 style={{ marginBottom: "10px" }}>{category.title}</h3>
+              <p style={{ color: "#666", fontSize: "14px" }}>
+                {category.description}
+              </p>
             </div>
-          );
-        })}
-      </>
+          ))}
+        </div>
+      ) : (
+        <div
+          className="card"
+          style={{ textAlign: "center", padding: "60px 20px" }}
+        >
+          <span
+            style={{ fontSize: "64px", marginBottom: "20px", display: "block" }}
+          >
+            📂
+          </span>
+          <h2 style={{ color: "#999" }}>No Categories Available</h2>
+        </div>
+      )}
     </div>
   );
 };
+
 export default UserCategories;

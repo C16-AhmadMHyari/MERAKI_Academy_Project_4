@@ -95,7 +95,32 @@ const update = async (req, res) => {
     res.status(500).json("server error");
   }
 };
+
+const search =   async (req, res) => {
+  try {
+    const { query } = req.query;
+    
+    if (!query) {
+      return res.json([]);
+    }
+
+    const packages = await packageModel.find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } }
+      ]
+    });
+    
+    res.json(packages);
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
+  search,
   createNewPackage,
   getAllPackages,
   deletePackage,

@@ -23,6 +23,9 @@ import UserCategory from "./components/User/UserCategory";
 import UserPackage from "./components/User/UserPackage";
 import UserChart from "./components/User/UserChart";
 import UserUrgentCampagins from "./components/User/UserUrgentCampagins"
+import AdminDonationsReport from "./components/Admin/AdminDonationsReport";
+import './App.css';
+import NotFound from "./components/shared components/NotFound";
 
 
 
@@ -67,8 +70,10 @@ const App = () => {
           <Route path="/user/category/:id" element = {<UserCategory/>}/>
           <Route path="/user/package/:id" element={<UserPackage/>}/>
           {role === "USER" && <Route path="/user/chart" element={<UserChart/>}/>}
+          <Route path="/admin/alldonations" element={<AdminDonationsReport/>}/>
           <Route path="/user/urgents" element ={<UserUrgentCampagins/>}/>
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </appContext.Provider>
       {token && <button onClick={()=>{navigate(-1)}}>Back</button>}

@@ -38,24 +38,86 @@ const UserCategory = () => {
   }, []);
 
   return (
-    <div>
-      <h2>{imgInfo.title}</h2>
-      <p>{imgInfo.description}</p>
-      <div>
-        {packages.map((element) => {
-          return (
-            <div key={element._id}>
-              {" "}
-              <img src={element.imgSource} onClick={()=>{navigate(`/user/package/${element._id}`)}} />
-              <br />
-              <h4>{element.title}</h4>
-              <p>{element.description}</p><br />
-            </div>
-          );
-        })}
+    <div className="container">
+      <div
+        className="card"
+        style={{ marginBottom: "30px", textAlign: "center" }}
+      >
+        <h1 style={{ marginBottom: "15px" }}>{imgInfo.title}</h1>
+        <p style={{ color: "#666", fontSize: "16px", lineHeight: "1.6" }}>
+          {imgInfo.description}
+        </p>
       </div>
-      {/* <img src={imgInfo.imgSource} /> */}
+
+      {packages.length > 0 ? (
+        <div>
+          <h2 style={{ marginBottom: "20px" }}>Available Campaigns</h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {packages.map((element) => (
+              <div
+                key={element._id}
+                className="card"
+                onClick={() => navigate(`/user/package/${element._id}`)}
+                style={{
+                  cursor: "pointer",
+                  transition: "transform 0.2s, box-shadow 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-5px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 15px rgba(0,0,0,0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+                }}
+              >
+                <img
+                  src={element.imgSource}
+                  alt={element.title}
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    objectFit: "contain",
+                    borderRadius: "5px",
+                    marginBottom: "15px",
+                    backgroundColor: "#f5f5f5",
+                  }}
+                />
+                <h4 style={{ marginBottom: "10px" }}>{element.title}</h4>
+                <p style={{ color: "#666", fontSize: "14px" }}>
+                  {element.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div
+          className="card"
+          style={{ textAlign: "center", padding: "60px 20px" }}
+        >
+          <span
+            style={{ fontSize: "64px", marginBottom: "20px", display: "block" }}
+          >
+            📦
+          </span>
+          <h2 style={{ color: "#999", marginBottom: "20px" }}>
+            No Campaigns Available
+          </h2>
+          <p style={{ color: "#666" }}>
+            Check back later for campaigns in this category
+          </p>
+        </div>
+      )}
     </div>
   );
 };
+
 export default UserCategory;
