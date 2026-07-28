@@ -54,8 +54,8 @@ const Home = () => {
   return (
     <div className="container">
       {localStorage.getItem("role") === "USER" && (
-        <div className="card" style={{ marginBottom: "30px" }}>
-          <div style={{ display: "flex", gap: "10px" }}>
+        <div className="card">
+          <div>
             <input
               type="text"
               placeholder="🔍 Search for campaigns..."
@@ -66,9 +66,7 @@ const Home = () => {
                   setSearchResults([]);
                   setHasSearched(false);
                 }
-              }}
-              style={{ flex: 1 }}
-            />
+              }} />
             <button onClick={confirmSearch}>Search</button>
           </div>
         </div>
@@ -76,18 +74,14 @@ const Home = () => {
 
       {hasSearched && searchResults.length === 0 ? (
         <div
-          className="card"
-          style={{ textAlign: "center", padding: "60px 20px" }}
-        >
-          <span
-            style={{ fontSize: "64px", marginBottom: "20px", display: "block" }}
-          >
+          className="card">
+          <span>
             🔍
           </span>
-          <h2 style={{ color: "#999", marginBottom: "20px" }}>
+          <h2>
             No matching results found
           </h2>
-          <p style={{ color: "#666", marginBottom: "30px" }}>
+          <p>
             Try searching with different keywords
           </p>
           <button
@@ -95,41 +89,30 @@ const Home = () => {
               setSearchResults([]);
               setHasSearched(false);
               setSearchInput("");
-            }}
-          >
+            }}>
             Back to Home
           </button>
         </div>
       ) : searchResults.length > 0 ? (
         <div>
-          <div style={{ marginBottom: "20px" }}>
+          <div>
             <button
               onClick={() => {
                 setSearchResults([]);
                 setHasSearched(false);
                 setSearchInput("");
-              }}
-            >
+              }}>
               ← Back to Home
             </button>
           </div>
-          <h2 style={{ marginBottom: "20px" }}>Search Results:</h2>
-          <div
-            style={{
-              display: "grid",
-              gap: "20px",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            }}
-          >
+          <h2>Search Results:</h2>
+          <div>
             {searchResults.map((pkg) => (
               <div
                 key={pkg._id}
                 className="card"
                 onClick={() => navigate(`/user/package/${pkg._id}`)}
-                style={{
-                  cursor: "pointer",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
@@ -138,22 +121,12 @@ const Home = () => {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
-                }}
-              >
+                }}>
                 <img
                   src={pkg.imgSource}
-                  alt={pkg.title}
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "contain",
-                    borderRadius: "5px",
-                    marginBottom: "15px",
-                    backgroundColor: "#f5f5f5",
-                  }}
-                />
-                <h3 style={{ marginBottom: "10px" }}>{pkg.title}</h3>
-                <p style={{ color: "#666", fontSize: "14px" }}>
+                  alt={pkg.title} />
+                <h3>{pkg.title}</h3>
+                <p>
                   {pkg.description}
                 </p>
               </div>
@@ -162,24 +135,14 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          <h2 style={{ marginBottom: "20px" }}>Urgent Campaigns</h2>
-          <div
-            style={{
-              display: "grid",
-              gap: "20px",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              marginBottom: "40px",
-            }}
-          >
+          <h2>Urgent Campaigns</h2>
+          <div>
             {urgentCampaigns.map((cam) => (
               <div
                 key={cam._id}
                 className="card"
                 onClick={() => navigate(`/user/package/${cam._id}`)}
-                style={{
-                  cursor: "pointer",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
@@ -188,45 +151,26 @@ const Home = () => {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
-                }}
-              >
+                }}>
                 <img
                   src={cam.imgSource}
-                  alt={cam.title}
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "contain",
-                    borderRadius: "5px",
-                    marginBottom: "15px",
-                    backgroundColor: "#f5f5f5",
-                  }}
-                />
-                <h3 style={{ marginBottom: "10px" }}>{cam.title}</h3>
-                <p style={{ color: "#666", fontSize: "14px" }}>
+                  alt={cam.title} />
+                <h3>{cam.title}</h3>
+                <p>
                   {cam.description}
                 </p>
               </div>
             ))}
           </div>
 
-          <h2 style={{ marginBottom: "20px" }}>All Categories</h2>
-          <div
-            style={{
-              display: "grid",
-              gap: "20px",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            }}
-          >
+          <h2>All Categories</h2>
+          <div>
             {categories.map((cat) => (
               <div
                 key={cat._id}
                 className="card"
                 onClick={() => navigate(`/user/category/${cat._id}`)}
-                style={{
-                  cursor: "pointer",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
@@ -235,10 +179,9 @@ const Home = () => {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
-                }}
-              >
-                <h3 style={{ marginBottom: "10px" }}>{cat.title}</h3>
-                <p style={{ color: "#666", fontSize: "14px" }}>
+                }}>
+                <h3>{cat.title}</h3>
+                <p>
                   {cat.description}
                 </p>
               </div>

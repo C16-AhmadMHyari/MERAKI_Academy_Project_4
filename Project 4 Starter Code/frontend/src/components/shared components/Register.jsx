@@ -21,7 +21,6 @@ const Register = () => {
       password: password,
       phoneNumber: phoneNumber,
       email: email,
-      role: "69280f7349d6a06052244e22",
     };
 
     axios
@@ -51,74 +50,60 @@ const Register = () => {
 
   return (
     <div className="container">
-      <div className="card" style={{ maxWidth: "400px", margin: "50px auto" }}>
-        <h2 style={{ textAlign: "center", marginBottom: "10px" }}>
+      <div className="card">
+        <h2>
           Create Account
         </h2>
-        <p style={{ textAlign: "center", color: "#666", marginBottom: "30px" }}>
+        <p>
           Join us today
         </p>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <input
             placeholder="First Name"
-            onChange={(e) => setFirstName(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setFirstName(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <input
             placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setLastName(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <input
             placeholder="Phone Number"
-            onChange={(e) => setphoneNumber(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setphoneNumber(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <input
             placeholder="Country"
-            onChange={(e) => setCountry(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setCountry(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <input
             type="email"
             placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setEmail(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "20px" }}>
+        <div>
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setPassword(e.target.value)} />
         </div>
 
-        <button onClick={confirmRegistration} style={{ width: "100%" }}>
+        <button onClick={confirmRegistration}>
           Register
         </button>
 
-        <p style={{ marginTop: "20px", textAlign: "center", color: "#666" }}>
+        <p>
           Already have an account?{" "}
           <Link
-            to="/users/login"
-            style={{ color: "#4a90e2", textDecoration: "none" }}
-          >
+            to="/users/login">
             Login here
           </Link>
         </p>

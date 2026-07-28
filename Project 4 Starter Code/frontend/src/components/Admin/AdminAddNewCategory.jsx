@@ -29,87 +29,53 @@ const AddNewCategory = () => {
 
   return (
     <div className="container">
-      <div className="card" style={{ maxWidth: "600px", margin: "0 auto" }}>
-        <h1 style={{ marginBottom: "30px", textAlign: "center" }}>
+      <div className="card">
+        <h1>
           Add New Category
         </h1>
 
         {imgSource && (
           <img
             src={imgSource}
-            alt="Category preview"
-            style={{
-              width: "100%",
-              maxHeight: "300px",
-              objectFit: "contain",
-              borderRadius: "5px",
-              marginBottom: "20px",
-              backgroundColor: "#f5f5f5",
-            }}
-          />
+            alt="Category preview" />
         )}
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Title
           </label>
           <input
             type="text"
             placeholder="Enter category title"
-            onChange={(e) => setTitle(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setTitle(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Description
           </label>
           <textarea
             placeholder="Write a description about the new category"
-            onChange={(e) => setDescription(e.target.value)}
-            style={{
-              width: "100%",
-              maxWidth: "100%",
-              minHeight: "100px",
-              padding: "10px",
-              border: "1px solid #4a90e2",
-              borderRadius: "5px",
-              fontSize: "16px",
-              fontFamily: "Arial, sans-serif",
-            }}
-          />
+            onChange={(e) => setDescription(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Image URL
           </label>
           <input
             type="text"
             placeholder="Put link of image that represents the category"
-            onChange={(e) => setImgsource(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setImgsource(e.target.value)} />
         </div>
 
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div>
           <button
-            onClick={confirmAdding}
-            style={{ flex: 1, backgroundColor: "#4a90e2" }}
-          >
+            onClick={confirmAdding}>
             ➕ Add Category
           </button>
           <button
-            onClick={() => navigate("/admin/categories")}
-            style={{ flex: 1, backgroundColor: "#95a5a6" }}
-          >
+            onClick={() => navigate("/admin/categories")}>
             Cancel
           </button>
         </div>

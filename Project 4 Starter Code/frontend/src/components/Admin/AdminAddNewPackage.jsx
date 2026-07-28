@@ -43,86 +43,52 @@ const AddNewPackage = () => {
 
   return (
     <div className="container">
-      <div className="card" style={{ maxWidth: "600px", margin: "0 auto" }}>
-        <h1 style={{ marginBottom: "30px", textAlign: "center" }}>
+      <div className="card">
+        <h1>
           Add New Package
         </h1>
 
         {imgSource && (
           <img
             src={imgSource}
-            alt="Package preview"
-            style={{
-              width: "100%",
-              maxHeight: "300px",
-              objectFit: "contain",
-              borderRadius: "5px",
-              marginBottom: "20px",
-              backgroundColor: "#f5f5f5",
-            }}
-          />
+            alt="Package preview" />
         )}
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Title
           </label>
           <input
             type="text"
             placeholder="Enter package title"
-            onChange={(e) => setTitle(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setTitle(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Description
           </label>
           <textarea
             placeholder="Write a description about the new package"
-            onChange={(e) => setDescription(e.target.value)}
-            style={{
-              width: "100%",
-              maxWidth: "100%",
-              minHeight: "100px",
-              padding: "10px",
-              border: "1px solid #4a90e2",
-              borderRadius: "5px",
-              fontSize: "16px",
-              fontFamily: "Arial, sans-serif",
-            }}
-          />
+            onChange={(e) => setDescription(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Image URL
           </label>
           <input
             type="text"
             placeholder="Put link of image that represents the package"
-            onChange={(e) => setImgsource(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setImgsource(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Category
           </label>
           <select
-            onChange={(e) => setCategoryId(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          >
+            onChange={(e) => setCategoryId(e.target.value)}>
             <option value="">Choose a category</option>
             {categories.map((cat) => (
               <option key={cat._id} value={cat._id}>
@@ -132,49 +98,37 @@ const AddNewPackage = () => {
           </select>
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Is it Urgent?
           </label>
           <select
-            onChange={(e) => setUrgent(e.target.value === "true")}
-            style={{ width: "100%", maxWidth: "100%" }}
-          >
+            onChange={(e) => setUrgent(e.target.value === "true")}>
             <option value="">Select option</option>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Active Immediately?
           </label>
           <select
-            onChange={(e) => setActivity(e.target.value === "true")}
-            style={{ width: "100%", maxWidth: "100%" }}
-          >
+            onChange={(e) => setActivity(e.target.value === "true")}>
             <option value="">Select option</option>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
 
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div>
           <button
-            onClick={confirmAdding}
-            style={{ flex: 1, backgroundColor: "#4a90e2" }}
-          >
+            onClick={confirmAdding}>
             ➕ Add Package
           </button>
           <button
-            onClick={() => navigate("/admin/packages")}
-            style={{ flex: 1, backgroundColor: "#95a5a6" }}
-          >
+            onClick={() => navigate("/admin/packages")}>
             Cancel
           </button>
         </div>

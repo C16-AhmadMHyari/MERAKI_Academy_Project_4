@@ -3,21 +3,31 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/users");
 const donationModel = require("../models/donations");
+const roleModel = require("../models/roles");
 
 
 const register = async (req, res) => {
-  const { firstName, lastName, country, password, phoneNumber, role, email } =
+  const { firstName, lastName, country, password, phoneNumber, email } =
     req.body;
-  const newUser = new userModel({
-    firstName,
-    lastName,
-    country,
-    password,
-    phoneNumber,
-    role,
-    email,
-  });
   try {
+    const defaultRole = await roleModel.findOne({ role: "USER" });
+    if (!defaultRole) {
+      return res.status(500).json({
+        succes: false,
+        message: "Default USER role is not configured",
+      });
+    }
+
+    const newUser = new userModel({
+      firstName,
+      lastName,
+      country,
+      password,
+      phoneNumber,
+      email,
+      role: defaultRole._id,
+    });
+
     const result = await newUser.save();
     res.status(201).json({
       succes: true,

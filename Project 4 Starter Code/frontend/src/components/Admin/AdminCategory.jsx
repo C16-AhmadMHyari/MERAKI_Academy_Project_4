@@ -40,26 +40,15 @@ const AdminCategory = () => {
   return (
     <div className="container">
       <div className="card">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "30px",
-          }}
-        >
+        <div>
           <h2>Category Details</h2>
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div>
             <button
-              onClick={() => navigate(`/admin/category/${id}/update`)}
-              style={{ backgroundColor: "#4a90e2" }}
-            >
+              onClick={() => navigate(`/admin/category/${id}/update`)}>
               ✏️ Edit
             </button>
             <button
-              onClick={deleteThisCategory}
-              style={{ backgroundColor: "#e74c3c" }}
-            >
+              onClick={deleteThisCategory}>
               🗑️ Delete
             </button>
           </div>
@@ -67,19 +56,10 @@ const AdminCategory = () => {
 
         <img
           src={imgInfo.imgSource}
-          alt={imgInfo.title}
-          style={{
-            width: "100%",
-            maxHeight: "400px",
-            objectFit: "contain",
-            borderRadius: "5px",
-            marginBottom: "20px",
-            backgroundColor: "#f5f5f5",
-          }}
-        />
+          alt={imgInfo.title} />
 
-        <h3 style={{ marginBottom: "15px" }}>{imgInfo.title}</h3>
-        <p style={{ color: "#666", lineHeight: "1.6" }}>
+        <h3>{imgInfo.title}</h3>
+        <p>
           {imgInfo.description}
         </p>
       </div>

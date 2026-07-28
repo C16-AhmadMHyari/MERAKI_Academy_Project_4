@@ -48,22 +48,18 @@ const UserChart = () => {
 
   return (
     <div className="container">
-      <h1 style={{ marginBottom: "30px" }}>🛒 My Cart</h1>
+      <h1>🛒 My Cart</h1>
 
       {chart.length === 0 ? (
         <div
-          className="card"
-          style={{ textAlign: "center", padding: "60px 20px" }}
-        >
-          <span
-            style={{ fontSize: "64px", marginBottom: "20px", display: "block" }}
-          >
+          className="card">
+          <span>
             🛒
           </span>
-          <h2 style={{ color: "#999", marginBottom: "20px" }}>
+          <h2>
             Your Cart is Empty
           </h2>
-          <p style={{ color: "#666", marginBottom: "30px" }}>
+          <p>
             Add donations to your cart to continue
           </p>
           <button onClick={() => navigate("/user/categories")}>
@@ -72,56 +68,29 @@ const UserChart = () => {
         </div>
       ) : (
         <>
-          <div style={{ marginBottom: "20px" }}>
+          <div>
             {chart.map((donation, i) => (
               <div
                 key={i}
-                className="card"
-                style={{
-                  marginBottom: "15px",
-                  display: "flex",
-                  gap: "20px",
-                  alignItems: "center",
-                }}
-              >
+                className="card">
                 <img
                   src={donation.imgSource}
-                  alt={donation.packageName}
-                  style={{
-                    width: "120px",
-                    height: "120px",
-                    objectFit: "contain",
-                    borderRadius: "5px",
-                    backgroundColor: "#f5f5f5",
-                    flexShrink: 0,
-                  }}
-                />
+                  alt={donation.packageName} />
 
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ marginBottom: "10px" }}>
+                <div>
+                  <h3>
                     {donation.packageName}
                   </h3>
-                  <p style={{ color: "#666", marginBottom: "10px" }}>
-                    <strong>Category:</strong> {donation.categoryName}
+                  <p>
+                    <strong>Category:</strong > {donation.categoryName}
                   </p>
-                  <p
-                    style={{
-                      color: "#27ae60",
-                      fontSize: "20px",
-                      fontWeight: "600",
-                    }}
-                  >
+                  <p>
                     ${donation.amount}
                   </p>
                 </div>
 
                 <button
-                  onClick={() => removeDonation(i)}
-                  style={{
-                    backgroundColor: "#e74c3c",
-                    padding: "10px 20px",
-                  }}
-                >
+                  onClick={() => removeDonation(i)}>
                   🗑️ Remove
                 </button>
               </div>
@@ -129,41 +98,20 @@ const UserChart = () => {
           </div>
 
           <div
-            className="card"
-            style={{
-              backgroundColor: "#e8f4f8",
-              padding: "30px",
-              marginBottom: "20px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h2 style={{ color: "#4a90e2" }}>Total Amount:</h2>
-              <h2 style={{ color: "#27ae60", fontSize: "32px" }}>
+            className="card">
+            <div>
+              <h2>Total Amount:</h2>
+              <h2>
                 ${totalAmount.toFixed(2)}
               </h2>
             </div>
-            <p
-              style={{ color: "#666", marginTop: "10px", textAlign: "center" }}
-            >
+            <p>
               {chart.length} donation{chart.length > 1 ? "s" : ""} in cart
             </p>
           </div>
 
           <button
-            onClick={complete}
-            style={{
-              width: "100%",
-              padding: "20px",
-              fontSize: "20px",
-              backgroundColor: "#27ae60",
-            }}
-          >
+            onClick={complete}>
             ✅ Complete and Process Donations
           </button>
         </>

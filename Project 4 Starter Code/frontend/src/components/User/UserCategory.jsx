@@ -40,34 +40,23 @@ const UserCategory = () => {
   return (
     <div className="container">
       <div
-        className="card"
-        style={{ marginBottom: "30px", textAlign: "center" }}
-      >
-        <h1 style={{ marginBottom: "15px" }}>{imgInfo.title}</h1>
-        <p style={{ color: "#666", fontSize: "16px", lineHeight: "1.6" }}>
+        className="card">
+        <h1>{imgInfo.title}</h1>
+        <p>
           {imgInfo.description}
         </p>
       </div>
 
       {packages.length > 0 ? (
         <div>
-          <h2 style={{ marginBottom: "20px" }}>Available Campaigns</h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "20px",
-            }}
-          >
+          <h2>Available Campaigns</h2>
+          <div>
             {packages.map((element) => (
               <div
                 key={element._id}
                 className="card"
                 onClick={() => navigate(`/user/package/${element._id}`)}
-                style={{
-                  cursor: "pointer",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
@@ -76,22 +65,12 @@ const UserCategory = () => {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
-                }}
-              >
+                }}>
                 <img
                   src={element.imgSource}
-                  alt={element.title}
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "contain",
-                    borderRadius: "5px",
-                    marginBottom: "15px",
-                    backgroundColor: "#f5f5f5",
-                  }}
-                />
-                <h4 style={{ marginBottom: "10px" }}>{element.title}</h4>
-                <p style={{ color: "#666", fontSize: "14px" }}>
+                  alt={element.title} />
+                <h4>{element.title}</h4>
+                <p>
                   {element.description}
                 </p>
               </div>
@@ -100,18 +79,14 @@ const UserCategory = () => {
         </div>
       ) : (
         <div
-          className="card"
-          style={{ textAlign: "center", padding: "60px 20px" }}
-        >
-          <span
-            style={{ fontSize: "64px", marginBottom: "20px", display: "block" }}
-          >
+          className="card">
+          <span>
             📦
           </span>
-          <h2 style={{ color: "#999", marginBottom: "20px" }}>
+          <h2>
             No Campaigns Available
           </h2>
-          <p style={{ color: "#666" }}>
+          <p>
             Check back later for campaigns in this category
           </p>
         </div>

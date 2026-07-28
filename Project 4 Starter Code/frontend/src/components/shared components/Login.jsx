@@ -32,52 +32,42 @@ const Login = () => {
 
   return (
     <div className="container">
-      <div className="card" style={{ maxWidth: "400px", margin: "50px auto" }}>
-        <h2 style={{ textAlign: "center", marginBottom: "10px" }}>
+      <div className="card">
+        <h2>
           Welcome Back
         </h2>
-        <p style={{ textAlign: "center", color: "#666", marginBottom: "30px" }}>
+        <p>
           Login to continue
         </p>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Email
           </label>
           <input
             type="email"
             placeholder="Enter your email"
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setEmail(e.target.value)} />
         </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{ display: "block", marginBottom: "5px", color: "#333" }}
-          >
+        <div>
+          <label>
             Password
           </label>
           <input
             type="password"
             placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", maxWidth: "100%" }}
-          />
+            onChange={(e) => setPassword(e.target.value)} />
         </div>
 
-        <button onClick={confirmLogin} style={{ width: "100%" }}>
+        <button onClick={confirmLogin}>
           Login
         </button>
 
-        <p style={{ marginTop: "20px", textAlign: "center", color: "#666" }}>
+        <p>
           Don't have an account?{" "}
           <Link
-            to="/users/register"
-            style={{ color: "#4a90e2", textDecoration: "none" }}
-          >
+            to="/users/register">
             Register here
           </Link>
         </p>

@@ -43,26 +43,15 @@ const AdminPackage = () => {
   return (
     <div className="container">
       <div className="card">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "30px",
-          }}
-        >
+        <div>
           <h2>Package Details</h2>
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div>
             <button
-              onClick={() => navigate(`/admin/package/${id}/update`)}
-              style={{ backgroundColor: "#4a90e2" }}
-            >
+              onClick={() => navigate(`/admin/package/${id}/update`)}>
               ✏️ Edit
             </button>
             <button
-              onClick={deletePackage}
-              style={{ backgroundColor: "#e74c3c" }}
-            >
+              onClick={deletePackage}>
               🗑️ Delete
             </button>
           </div>
@@ -70,34 +59,15 @@ const AdminPackage = () => {
 
         <img
           src={imgInfo.imgSource}
-          alt={imgInfo.title}
-          style={{
-            width: "100%",
-            maxHeight: "400px",
-            objectFit: "contain",
-            borderRadius: "5px",
-            marginBottom: "20px",
-            backgroundColor: "#f5f5f5",
-          }}
-        />
+          alt={imgInfo.title} />
 
-        <h3 style={{ marginBottom: "15px" }}>{imgInfo.title}</h3>
-        <p style={{ color: "#666", lineHeight: "1.6" }}>
+        <h3>{imgInfo.title}</h3>
+        <p>
           {imgInfo.description}
         </p>
 
         {imgInfo.urgent && (
-          <div
-            style={{
-              marginTop: "20px",
-              padding: "10px 15px",
-              backgroundColor: "#ffe5e5",
-              border: "1px solid #ff4444",
-              borderRadius: "5px",
-              color: "#cc0000",
-              fontWeight: "500",
-            }}
-          >
+          <div>
             🚨 Urgent Campaign
           </div>
         )}

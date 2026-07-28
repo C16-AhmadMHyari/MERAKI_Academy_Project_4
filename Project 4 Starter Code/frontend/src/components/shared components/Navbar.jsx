@@ -6,69 +6,44 @@ const Navbar = () => {
   const { token, setToken, role, setRole } = useContext(appContext);
 
   return (
-    <nav
-      style={{
-        backgroundColor: "#4a90e2",
-        padding: "15px 0",
-        marginBottom: "20px",
-        boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-      }}
-    >
+    <nav>
       <div
-        className="container"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "10px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "15px",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
-          <Link to="/" style={linkStyle}>
+        className="container">
+        <div>
+          <Link to="/">
             🏠 Home
           </Link>
           {role === "ADMIN" && (
-            <Link to="/users/adminpanel" style={linkStyle}>
+            <Link to="/users/adminpanel">
               ⚙️ Admin Panel
             </Link>
           )}
           {role === "USER" && (
-            <Link to="/user/categories" style={linkStyle}>
+            <Link to="/user/categories">
               📂 Fields of Support
             </Link>
           )}
           {role === "USER" && (
-            <Link to="/user/urgents" style={linkStyle}>
+            <Link to="/user/urgents">
               🚨 Urgent Campaigns
             </Link>
           )}
-          <Link to="/about" style={linkStyle}>
+          <Link to="/about">
             ℹ️ About
           </Link>
           {role === "USER" && (
-            <Link to="/user/chart" style={linkStyle}>
+            <Link to="/user/chart">
               🛒 Cart
             </Link>
           )}
         </div>
 
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+        <div>
           {!token ? (
             <>
               <Link
                 to="/users/login"
-                style={{
-                  ...linkStyle,
-                  backgroundColor: "rgba(255,255,255,0.2)",
-                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor =
                     "rgba(255,255,255,0.3)";
@@ -76,25 +51,18 @@ const Navbar = () => {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor =
                     "rgba(255,255,255,0.2)";
-                }}
-              >
+                }}>
                 Login
               </Link>
               <Link
                 to="/users/register"
-                style={{
-                  ...linkStyle,
-                  backgroundColor: "white",
-                  color: "#4a90e2",
-                  fontWeight: "500",
-                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = "#f0f0f0";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = "white";
-                }}
-              >
+                }}>
                 Register
               </Link>
             </>
@@ -106,17 +74,13 @@ const Navbar = () => {
                 setToken(null);
                 setRole(null);
               }}
-              style={{
-                ...linkStyle,
-                backgroundColor: "rgba(255,255,255,0.2)",
-              }}
+
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.3)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.2)";
-              }}
-            >
+              }}>
               🚪 Logout
             </Link>
           )}
