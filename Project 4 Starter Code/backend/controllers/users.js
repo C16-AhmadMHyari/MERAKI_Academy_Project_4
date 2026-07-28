@@ -53,11 +53,11 @@ const login = async (req, res) => {
       .findOne({ email: email.toLowerCase() })
       .populate("role");
     if (!result) {
-      res.status(404).json("User not found");
+      res.status(401).json("Invalid email or password");
     } else {
       const correctPassword = await bcrypt.compare(password, result.password);
       if (!correctPassword) {
-        res.status(404).json("email or password is not correct");
+        res.status(401).json("Invalid email or password");
       } else {
         const payload = {
           id: result.id,
